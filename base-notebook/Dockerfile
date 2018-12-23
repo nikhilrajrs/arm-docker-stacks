@@ -26,6 +26,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     fonts-liberation \
     python3 \
     python3-pip \
+    python3-setuptools \
  && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
@@ -55,6 +56,8 @@ USER $NB_UID
 # Setup work directory for backward-compatibility
 RUN mkdir /home/$NB_USER/work && \
     fix-permissions /home/$NB_USER
+
+RUN pip3 install tini
 
 RUN pip3 install notebook==5.7.2
 # Install Jupyter Notebook, Lab, and Hub
