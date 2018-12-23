@@ -61,7 +61,7 @@ RUN mkdir /home/$NB_USER/work && \
 
 # Install conda as jovyan and check the md5 sum provided on the download site
 # ENV MINICONDA_VERSION 4.5.11
-ENV MINICONDA_VERSION Latest
+ENV MINICONDA_VERSION latest
 RUN cd /tmp && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh && \
     echo "e1045ee415162f944b6aebfe560b8fee *Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh" | md5sum -c - && \
