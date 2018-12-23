@@ -2,7 +2,7 @@
 ![Read the Docs](https://img.shields.io/readthedocs/jupyter-docker-stacks.svg)
 [![](https://images.microbadger.com/badges/version/jupyter/base-notebook.svg)](https://microbadger.com/images/jupyter/base-notebook "Get your own version badge on microbadger.com")
 
-# Jupyter Docker Stacks
+# Jupyter Docker Stacks - modified for ARMv7 architecture
 
 Jupyter Docker Stacks are a set of ready-to-run Docker images containing Jupyter applications and interactive computing tools.
 
