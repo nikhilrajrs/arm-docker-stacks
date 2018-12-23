@@ -3,7 +3,7 @@
 
 # Ubuntu 18.04 (bionic) from 2018-05-26
 # https://github.com/docker-library/official-images/commit/aac6a45b9eb2bffb8102353c350d341a410fb169
-ARG BASE_CONTAINER=python:3.4-alpine
+ARG BASE_CONTAINER=ubuntu:18.04
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Nikhil Raj"
@@ -12,6 +12,21 @@ ARG NB_UID="1000"
 ARG NB_GID="100"
 
 USER root
+
+# Install all OS dependencies for notebook server that starts but lacks all
+# features (e.g., download as all possible file formats)
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get -yq dist-upgrade \
+ && apt-get install -yq --no-install-recommends \
+    wget \
+    bzip2 \
+    ca-certificates \
+    sudo \
+    locales \
+    fonts-liberation \
+    python3 \
+    python3-pip \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
@@ -41,9 +56,11 @@ USER $NB_UID
 RUN mkdir /home/$NB_USER/work && \
     fix-permissions /home/$NB_USER
 
-RUN pip install --upgrade pip
+RUN pip3 install tini
 
-RUN pip install notebook=5.7.2
+RUN pip3 install --upgrade pip3
+
+RUN pip3 install notebook=5.7.2
 # Install Jupyter Notebook, Lab, and Hub
 # Generate a notebook server config
 # Cleanup temporary files
