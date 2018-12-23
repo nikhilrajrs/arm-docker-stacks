@@ -61,7 +61,7 @@ RUN mkdir /home/$NB_USER/work && \
 
 # Install conda as jovyan and check the md5 sum provided on the download site
 # ENV MINICONDA_VERSION 4.5.11
-ENV MINICONDA_VERSION 3.16.0
+ENV MINICONDA_VERSION latest
 
 RUN cd /tmp && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-armv7l.sh && \
@@ -71,7 +71,7 @@ RUN cd /tmp && \
     $CONDA_DIR/bin/conda config --system --add channels conda-forge && \
 #    $CONDA_DIR/bin/conda config --system --set auto_update_conda false && \
     $CONDA_DIR/bin/conda config --system --set show_channel_urls true
-RUN $CONDA_DIR/bin/conda install --quiet --yes conda="${MINICONDA_VERSION%.*}.*" && \
+RUN $CONDA_DIR/bin/conda install --quiet --yes && \
     $CONDA_DIR/bin/conda update --all --quiet --yes && \
     conda clean -tipsy && \
     rm -rf /home/$NB_USER/.cache/yarn && \
