@@ -56,7 +56,7 @@ USER $NB_UID
 RUN mkdir /home/$NB_USER/work && \
     fix-permissions /home/$NB_USER
 
-RUN pip3 install notebook=5.7.2
+RUN pip3 install notebook==5.7.2
 # Install Jupyter Notebook, Lab, and Hub
 # Generate a notebook server config
 # Cleanup temporary files
