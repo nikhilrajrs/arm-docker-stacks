@@ -64,8 +64,8 @@ RUN mkdir /home/$NB_USER/work && \
 ENV MINICONDA_VERSION latest
 
 RUN cd /tmp && \
-    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh && \
-    echo "a01cbe45755d576c2bb9833859cf9fd7 *Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh" | md5sum -c - && \
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh
+RUN echo "a01cbe45755d576c2bb9833859cf9fd7 *Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh" | md5sum -c - && \
     /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh -f -b -p $CONDA_DIR
 RUN rm Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh && \
     $CONDA_DIR/bin/conda config --system --prepend channels conda-forge && \
