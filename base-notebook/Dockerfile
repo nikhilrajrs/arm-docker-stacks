@@ -27,6 +27,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     python3 \
     python3-pip \
     python3-setuptools \
+    python3-dev \
  && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
