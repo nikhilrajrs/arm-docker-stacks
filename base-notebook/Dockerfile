@@ -61,11 +61,12 @@ RUN mkdir /home/$NB_USER/work && \
 
 # Install conda as jovyan and check the md5 sum provided on the download site
 # ENV MINICONDA_VERSION 4.5.11
+ENV MINICONDA_VERSION latest
 
 RUN cd /tmp && \
-    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv71.sh && \
-    echo "e1045ee415162f944b6aebfe560b8fee *Miniconda3-latest-Linux-armv71.sh" | md5sum -c - && \
-    /bin/bash Miniconda3-latest-Linux-armv71.sh -f -b -p $CONDA_DIR
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh && \
+    echo "4fb49180624952721628029097dcf1da *Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh" | md5sum -c - && \
+    /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh -f -b -p $CONDA_DIR
 RUN rm Miniconda3-${MINICONDA_VERSION}-Linux-armv71.sh && \
     $CONDA_DIR/bin/conda config --system --prepend channels conda-forge && \
     $CONDA_DIR/bin/conda config --system --set auto_update_conda false && \
