@@ -46,7 +46,7 @@ RUN groupadd wheel -g 11 && \
     echo "auth required pam_wheel.so use_uid" >> /etc/pam.d/su && \
     useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
     chmod g+w /etc/passwd && \
-    fix-permissions $HOME && \
+    fix-permissions $HOME
 
 USER $NB_UID
 
