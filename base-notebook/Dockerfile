@@ -3,7 +3,7 @@
 
 # Ubuntu 18.04 (bionic) from 2018-05-26
 # https://github.com/docker-library/official-images/commit/aac6a45b9eb2bffb8102353c350d341a410fb169
-ARG BASE_CONTAINER=ubuntu:bionic-20180526
+ARG BASE_CONTAINER=python:3.4-alpine
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Nikhil Raj"
@@ -24,8 +24,6 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     sudo \
     locales \
     fonts-liberation \
-    python3 \
-    python3-pip \
  && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
