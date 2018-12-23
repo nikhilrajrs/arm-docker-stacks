@@ -57,6 +57,8 @@ USER $NB_UID
 RUN mkdir /home/$NB_USER/work && \
     fix-permissions /home/$NB_USER
 
+RUN pip3 install cython
+
 RUN pip3 install tini
 
 RUN pip3 install notebook==5.7.2
